@@ -1,9 +1,11 @@
-pub fn bubble_sort<T: Ord>(arr: &mut [T]) {
+pub fn bubble_sort(arr: &mut [i32]) {
     if arr.is_empty() {
         return;
     }
+
     let mut sorted = false;
     let mut n = arr.len();
+
     while !sorted {
         sorted = true;
         for i in 0..n - 1 {
@@ -12,9 +14,26 @@ pub fn bubble_sort<T: Ord>(arr: &mut [T]) {
                 sorted = false;
             }
         }
-        n -= 1;
+        n -= 2;
     }
 }
+// pub fn bubble_sort<T: Ord>(arr: &mut [T]) {
+//     if arr.is_empty() {
+//         return;
+//     }
+//     let mut sorted = false;
+//     let mut n = arr.len();
+//     while !sorted {
+//         sorted = true;
+//         for i in 0..n - 1 {
+//             if arr[i] > arr[i + 1] {
+//                 arr.swap(i, i + 1);
+//                 sorted = false;
+//             }
+//         }
+//         n -= 1;
+//     }
+// }
 
 #[cfg(test)]
 mod tests {
@@ -39,9 +58,12 @@ mod tests {
         bubble_sort(&mut ve2);
         assert!(is_sorted(&ve2) && have_same_elements(&ve2, &cloned));
     }
+
     #[test]
     fn empty() {
-        let mut ve3: Vec<usize> = vec![];
+        // let mut ve3: Vec<usize> = vec![];
+        // let cloned = ve3.clone();
+        let mut ve3: [i32; 0] = [];
         let cloned = ve3.clone();
         bubble_sort(&mut ve3);
         assert!(is_sorted(&ve3) && have_same_elements(&ve3, &cloned));
